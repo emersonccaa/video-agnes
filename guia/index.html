@@ -108,6 +108,7 @@
     <a class="sec" href="#fluxo">Como funciona</a>
     <a class="sec" href="#guia">Guia de uso</a>
     <a class="sec" href="#exemplos">Exemplos</a>
+    <a class="sec" href="#dicas">Dicas</a>
     <a class="sec" href="#roadmap">Roadmap</a>
     <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
     <a class="btn" href="https://github.com/inematds/videos-agnes" target="_blank" rel="noopener">GitHub</a>
@@ -217,6 +218,20 @@ AGNES_API_KEY=<span class="s">sua-chave</span></pre></div>
   <div class="ex">
     <figure><img src="assets/ex1.jpg" alt="Esquilo numa floresta ao amanhecer"><figcaption>"O Esquilo que Encontrou um Amigo" — cena do rio, estilo aquarela/3D.</figcaption></figure>
     <figure><img src="assets/ex2.jpg" alt="Três crianças brincando num quintal"><figcaption>"O Mistério do Alien" — os três amigos, mantidos consistentes por âncora de grupo.</figcaption></figure>
+  </div>
+</div></section>
+
+<section id="dicas"><div class="wrap">
+  <span class="chip">Dicas · API Agnes medida na prática</span>
+  <h2>O que ninguém te conta (e a doc erra)</h2>
+  <p class="sub">Aprendido em ~70 chamadas reais. A documentação completa está no <a href="https://github.com/inematds/videos-agnes#documentação-da-api-agnes-ai-medida-na-prática" target="_blank" rel="noopener">README</a>.</p>
+  <div class="grid g3">
+    <div class="card"><h3>🇬🇧 Prompt em inglês</h3><p>Em português a API bloqueia conteúdo legítimo com HTTP 400. "Usar um galho como alavanca" foi recusado 4× em PT e passou de primeira em EN.</p></div>
+    <div class="card"><h3>🔢 No máximo 2 referências</h3><p>Cinco referências destroem a imagem: confete de pixels e o prompt é ignorado. Muitos personagens numa cena? Use uma âncora de grupo (várias pessoas juntas = 1 ref).</p></div>
+    <div class="card"><h3>📐 Tamanho em pixels</h3><p>Em img2img o <code>ratio</code> é ignorado (vira quadrado). Peça <code>size:"1312x736"</code> em pixels, sem <code>ratio</code>, para manter 16:9.</p></div>
+    <div class="card"><h3>🔁 Retry sempre</h3><p>~34% das chamadas voltam 503. O retry com backoff recupera quase todas — não é opcional.</p></div>
+    <div class="card"><h3>🐾 Nada de pose frontal</h3><p>Frontal simétrica duplica cauda/cabeça. Use perfil ou três-quartos e peça "exactly one" no positivo (nunca "no two", que vira atrator).</p></div>
+    <div class="card"><h3>🎬 Vídeo: 5/min e o size mente</h3><p>O vídeo tem rate limit real de 5 requisições/min (429) e tem <code>seed</code> (a imagem não). O tamanho da resposta mente: pede 1312×736, entrega 1280×704 — meça com ffprobe.</p></div>
   </div>
 </div></section>
 
