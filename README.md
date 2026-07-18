@@ -102,10 +102,38 @@ curl -X POST https://apihub.agnes-ai.com/v1/videos \
 | 3+ keyframes | ✅ aceito |
 | **`seed`** | ✅ **existe no vídeo** (na imagem não!) · **`negative_prompt`** também |
 | `num_frames` | ≤ **441** (18,4s @24fps), regra **8n+1**; `seconds = num_frames / frame_rate` |
-| **RATE LIMIT REAL** | **5 requisições/min** → HTTP 429. É o único limite real de toda a API. Throttle obrigatório |
+| `mode: "ti2vid"` | ✅ imagem única + movimento sutil (uma âncora, deriva menos que A→B) |
+| **RATE LIMIT — criação** | **5 requisições/min** no `POST /v1/videos` → HTTP 429 |
+| **RATE LIMIT — status** | ⚠️ o **polling** (`GET /agnesapi`) TAMBÉM é limitado (`video status query rate limit`). Espaçar as consultas (≥15s), não só a criação |
 | Keyframes por **base64** | ✅ funciona — a doc diz que exige URL pública, **mentira** |
 | ⚠️ `size` da resposta **mente** | pede `1312x736`, entrega **1280x704** (nem 16:9 exato). **Medir com ffprobe** |
 | Tempo | 19–50s por clipe de ~3,4s |
+
+## Técnica multi-plano (FUTURO — parada por causa dos rate limits)
+
+**Independente de modelo** — vale pra qualquer gerador de vídeo por keyframe (Agnes, Kling, Veo…),
+não é específico da Agnes. Fica documentada aqui para adoção quando os limites de vídeo afrouxarem.
+
+O problema: a interpolação A→B tem **dois defeitos distintos**.
+1. **Defeito de vídeo** (dentro do clipe): o morph inventa o "entre" — objetos se atravessam,
+   movimento vaza (o pássaro voa e a barraca "bate asas"), coisas surgem/caem sem razão, a roupa
+   se deforma durante o gesto. Piora quanto mais **longo** o clipe (esticar pra 18s é onde desmorona).
+2. **Defeito de imagem** (no corte entre clipes): `cena-N-b` e `cena-(N+1)-a` são gerados
+   separadamente → derivam → a roupa/rosto **muda no corte**.
+
+A técnica ataca os dois:
+- **Planos curtos + corte seco** — quebrar cada beat da narração em 3–4 planos de ~3,4s
+  (o ponto doce do modelo) em vez de 1 morph longo. Corte não interpola → zero defeito de vídeo.
+  Mistura `keyframes` (A→B onde há ação) com `ti2vid` (imagem viva onde é só atmosfera).
+- **Referência encadeada** — cada plano gera usando o **plano anterior** como referência
+  (`extra_body.image=[frame_anterior]`), não só a âncora. A roupa/estado carrega adiante →
+  mata o defeito de imagem no corte. (Testado: 3 planos da "noite gelada", figurino idêntico.)
+
+Por que está **parada**: multiplica as chamadas de vídeo (1 clipe/cena → 3–4), e os **três** rate
+limits de vídeo (criação 5/min + status query) tornam o forno longo demais hoje. Quando os limites
+afrouxarem — ou num modelo sem esse gargalo — vira o default. Comprovado num teste de uma cena
+(morph de 13s × 4 planos curtos cortados, mesma narração): o figurino se manteve e o movimento
+ficou mais limpo.
 
 ## Modelos disponíveis (`GET /v1/models`)
 
