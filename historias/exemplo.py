@@ -4,7 +4,7 @@
 TITULO = 'O Pequeno Robô que Aprendeu a Sonhar (exemplo)'
 LEGENDA = ('O Pequeno Robô que Aprendeu a Sonhar (exemplo)\n'
            'Gerado com videos-agnes · imagens + video keyframe + narracao local. Custo US$ 0.')
-VOZ = 'bella'   # voz do inemavox (chatterbox)
+VOZ = 'pt-BR-FranciscaNeural'
 
 # Descrição fixa dos personagens — repetida literal em toda cena que o personagem aparece.
 ROBO = ('Biel, a small friendly round robot with a glowing blue screen face, short antenna, '
