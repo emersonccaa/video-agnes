@@ -5,16 +5,16 @@ description: Gera IMAGENS avulsas com a API Agnes AI (agnes-image-2.1-flash) a c
 
 # imagens-agnes — geração de imagem (Agnes AI, US$ 0)
 
-Projeto: `~/projetos/imagens-agnes/` · CLI: `gerar.py`
+Projeto: `~/Workspace/videos-agnes/` · CLI: `skills/imagens-agnes/gerar.py`
 
 ```bash
-cd ~/projetos/imagens-agnes
-python3 gerar.py "a red fox in a snowy forest, cinematic" -o fox.png
-python3 gerar.py "..." --ratio 1:1 --size 2K
-python3 gerar.py "..." --ref base.png                 # img2img (1-2 refs; PNG local vira base64)
+cd ~/Workspace/videos-agnes
+python3 skills/imagens-agnes/gerar.py "a red fox in a snowy forest, cinematic" -o fox.png
+python3 skills/imagens-agnes/gerar.py "..." --ratio 1:1 --size 2K
+python3 skills/imagens-agnes/gerar.py "..." --ref base.png            # img2img (1-2 refs; PNG local vira base64)
 ```
 
-## Fatos MEDIDOS (fonte: `~/projetos/agnes-nei/NOTAS-API.md`, ~70 chamadas reais)
+## Fatos MEDIDOS (~70 chamadas reais)
 
 **Endpoint** `POST /v1/images/generations` · modelo `agnes-image-2.1-flash` · **US$ 0, sem créditos**.
 Corpo: `model`, `prompt`, `size`, `ratio`, `extra_body.{image,response_format}`.
@@ -50,4 +50,4 @@ funciona bem (usar `--ratio 1:1` ou `3:4`).
 1K (`1312x736`, ~32s) = padrão. 2K = mais nitidez. 3K/4K = lento e mais 503, **e 4K não serve
 de referência** depois (>10 MB). Ratios: `1:1 16:9 9:16 4:3 3:4 2:3 3:2 21:9`.
 
-Pré-requisito: `AGNES_API_KEY` em `~/projetos/agnes-nei/.env`.
+Pré-requisito: `AGNES_API_KEY` em `config/agnes.env` (caminho configurável via `AGNES_ENV_PATH`).

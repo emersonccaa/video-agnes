@@ -1,6 +1,6 @@
 """Pipeline generico: historia -> filme narrado.
 
-Encapsula TUDO que foi aprendido em 2026-07-17 (ver ~/projetos/agnes-nei/NOTAS-API.md):
+Encapsula TUDO que foi aprendido sobre a API Agnes AI, medido na pratica:
 
 imagem (agnes-image-2.1-flash)
 - prompts em INGLES (o PT apanha do filtro de conteudo -> HTTP 400)
@@ -27,13 +27,13 @@ montagem
 - narracao PRIMEIRO: a duracao da fala define num_frames de cada clipe
 
 narracao (Edge TTS)
-- TTS online (Microsoft), gratuito, sem GPU — troca o antigo inemavox/chatterbox local.
-- Sem clonagem de voz: usa vozes prontas PT-BR (default: pt-BR-FranciscaNeural).
+- TTS online (Microsoft), gratuito, sem GPU — sem daemon local, sem clonagem de voz.
+- Usa vozes prontas PT-BR (default: pt-BR-FranciscaNeural).
 - Requer pacote `edge-tts` (pip install edge-tts) e conexao com a internet.
 
---- Configuracao (env vars, com fallback pra um layout ~/projetos/*) ---
-AGNES_ENV_PATH      caminho do .env com AGNES_API_KEY   (default: ~/projetos/agnes-nei/.env)
-TELEGRAM_ENV_PATH   caminho do .env do bot do Telegram   (default: ~/projetos/openpcbot/.env)
+--- Configuracao (env vars, com fallback pra config/ dentro do proprio projeto) ---
+AGNES_ENV_PATH      caminho do .env com AGNES_API_KEY   (default: <projeto>/config/agnes.env)
+TELEGRAM_ENV_PATH   caminho do .env do bot do Telegram   (default: <projeto>/config/telegram.env)
 EDGE_TTS_VOICE      voz do Edge TTS a usar               (default: pt-BR-FranciscaNeural)
 """
 
@@ -41,11 +41,14 @@ import base64, json, os, shutil, subprocess, time, urllib.request, urllib.error
 
 # ---------------------------------------------------------------- config ---
 
+_PROJETO = os.path.dirname(os.path.abspath(__file__))
+
+
 def _cfg_path(env_var, default):
     return os.path.expanduser(os.environ.get(env_var, default))
 
-AGNES_ENV_PATH = _cfg_path('AGNES_ENV_PATH', '~/projetos/agnes-nei/.env')
-TELEGRAM_ENV_PATH = _cfg_path('TELEGRAM_ENV_PATH', '~/projetos/openpcbot/.env')
+AGNES_ENV_PATH = _cfg_path('AGNES_ENV_PATH', os.path.join(_PROJETO, 'config', 'agnes.env'))
+TELEGRAM_ENV_PATH = _cfg_path('TELEGRAM_ENV_PATH', os.path.join(_PROJETO, 'config', 'telegram.env'))
 EDGE_TTS_VOICE = os.environ.get('EDGE_TTS_VOICE', 'pt-BR-FranciscaNeural')
 
 IMG_API = 'https://apihub.agnes-ai.com/v1/images/generations'

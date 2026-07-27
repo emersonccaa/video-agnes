@@ -6,11 +6,12 @@ Uso:
   python3 gerar.py "..." --ref base.png                               # img2img (1-2 refs)
   python3 gerar.py "..." --ref a.png --ref b.png -o out.png           # 2 refs (teto útil)
 
-Tudo que este CLI aplica foi MEDIDO (ver ~/projetos/agnes-nei/NOTAS-API.md). Ver README.
+Tudo que este CLI aplica foi MEDIDO na pratica. Ver README.
 """
 import argparse, base64, json, os, struct, sys, time, urllib.request, urllib.error
 
-ENV = '/home/nmaldaner/projetos/agnes-nei/.env'
+ENV = os.path.expanduser(os.environ.get(
+    'AGNES_ENV_PATH', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'config', 'agnes.env')))
 API = 'https://apihub.agnes-ai.com/v1/images/generations'
 
 # tabela de dimensões (16:9 e 1:1 confirmados por medição; demais conforme doc)

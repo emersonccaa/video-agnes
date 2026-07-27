@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>videos-agnes — história vira filme narrado, de graça</title>
-<meta name="description" content="Pipeline que transforma uma história/conto em filme animado narrado usando a API Agnes AI (imagens + vídeo keyframe + narração local). Custo US$ 0.">
+<meta name="description" content="Pipeline que transforma uma história/conto em filme animado narrado usando a API Agnes AI (imagens + vídeo keyframe + narração via Edge TTS). Custo US$ 0.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -36,11 +36,6 @@
   nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
   nav .brand .emoji{font-size:1.25rem}
   nav .sep{color:var(--mut);opacity:.45}
-  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
-  nav .inema:hover{filter:brightness(1.15)}
-  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
-  nav .pro:hover{filter:brightness(1.15)}
-  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
   nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
   nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
   .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
@@ -97,12 +92,6 @@
 
 <nav><div class="wrap">
   <a class="brand" href="#top"><span class="emoji">🎬</span> videos-agnes</a>
-  <span class="sep">|</span>
-  <span class="clubpro">
-    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
-    <span class="sep">-</span>
-    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
-  </span>
   <div class="links">
     <a class="sec" href="#oque">O que é</a>
     <a class="sec" href="#fluxo">Como funciona</a>
@@ -111,7 +100,7 @@
     <a class="sec" href="#dicas">Dicas</a>
     <a class="sec" href="#roadmap">Roadmap</a>
     <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
-    <a class="btn" href="https://github.com/inematds/videos-agnes" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="https://github.com/emersonccaa/videos-agnes" target="_blank" rel="noopener">GitHub</a>
   </div>
 </div></nav>
 
@@ -124,7 +113,7 @@
       <p class="lead">Você dá a história e os personagens. Ele devolve o vídeo pronto, com voz — imagens, cenas animadas e narração, tudo pela API Agnes AI a custo US$ 0.</p>
       <div class="cta">
         <a class="btn" href="#guia">Começar o guia</a>
-        <a class="btn ghost" href="https://github.com/inematds/videos-agnes" target="_blank" rel="noopener">Ver no GitHub</a>
+        <a class="btn ghost" href="https://github.com/emersonccaa/videos-agnes" target="_blank" rel="noopener">Ver no GitHub</a>
       </div>
     </div>
     <figure><img src="assets/hero.png" alt="Cena de um filme gerado pelo videos-agnes"></figure>
@@ -136,7 +125,7 @@
   <h2>Da história ao MP4, sem editar nada à mão</h2>
   <p class="sub">Um pipeline que lê o conto, desenha os personagens, gera duas imagens por cena (início e fim), anima cada par em vídeo, narra em português e monta o filme. Duas skills acompanham o projeto: <b>videos-agnes</b> (história → filme) e <b>imagens-agnes</b> (imagem avulsa).</p>
   <div class="grid g3">
-    <div class="card"><h3>💸 Custo US$ 0</h3><p>Imagens (agnes-image-2.1-flash) e vídeo (agnes-video-v2.0) pela API Agnes AI, sem cobrança por geração. Narração roda local.</p></div>
+    <div class="card"><h3>💸 Custo US$ 0</h3><p>Imagens (agnes-image-2.1-flash) e vídeo (agnes-video-v2.0) pela API Agnes AI, sem cobrança por geração. Narração via Edge TTS, online e gratuita.</p></div>
     <div class="card"><h3>🎭 Personagem consistente</h3><p>Model sheet por personagem: uma âncora-mãe e as demais vistas derivadas dela, para o mesmo rosto atravessar as cenas.</p></div>
     <div class="card"><h3>🗣️ Narração casada</h3><p>A voz é gerada antes; cada clipe dura exatamente a fala da cena. Revisão de dicção corrige número e moeda por extenso antes do TTS.</p></div>
   </div>
@@ -150,7 +139,7 @@
     <span>Âncoras (model sheet)</span><span class="arr">→</span>
     <span>2 imagens por cena</span><span class="arr">→</span>
     <span>Revisão de dicção</span><span class="arr">→</span>
-    <span>Narração (bella)</span><span class="arr">→</span>
+    <span>Narração (Edge TTS)</span><span class="arr">→</span>
     <span>Clipes keyframe A→B</span><span class="arr">→</span>
     <span>Montagem</span><span class="arr">→</span>
     <span>Telegram</span>
@@ -158,7 +147,7 @@
   <div class="grid g3" style="margin-top:26px">
     <div class="card"><h3>🖼️ Imagens</h3><p>text2img e img2img com até 2 referências (teto medido — mais que isso satura). Proporção 16:9 via pixels explícitos.</p></div>
     <div class="card"><h3>🎞️ Vídeo</h3><p>Modo keyframes: cada cena interpola da imagem A para a B. Duração pela regra 8n+1, respeitando o rate limit de 5/min.</p></div>
-    <div class="card"><h3>🔊 Áudio</h3><p>Narração TTS local (inemavox, voz bella/chatterbox), com padding para casar fala e imagem sem cortar palavra.</p></div>
+    <div class="card"><h3>🔊 Áudio</h3><p>Narração via Edge TTS (voz neural PT-BR), com padding para casar fala e imagem sem cortar palavra.</p></div>
   </div>
 </div></section>
 
@@ -167,10 +156,10 @@
   <h2>O que precisa estar no lugar</h2>
   <p class="sub">Tudo roda local, exceto as chamadas à API Agnes. As chaves ficam fora do repo.</p>
   <div class="grid g3">
-    <div class="card"><h3>Chave Agnes</h3><p>Em <code>~/projetos/agnes-nei/.env</code>, lida em runtime.</p><pre><span class="c"># .env</span>
+    <div class="card"><h3>Chave Agnes</h3><p>Em <code>config/agnes.env</code>, lida em runtime (nunca versionada).</p><pre><span class="c"># config/agnes.env</span>
 AGNES_API_KEY=<span class="s">sua-chave</span></pre></div>
-    <div class="card"><h3>Narração local</h3><p>Daemon inemavox para o TTS.</p><pre><span class="c"># inemavox</span>
-<span class="k">localhost:8010</span></pre></div>
+    <div class="card"><h3>Narração online</h3><p>Pacote <code>edge-tts</code> instalado — TTS gratuito, sem daemon nem GPU.</p><pre><span class="c"># instalar</span>
+<span class="k">pip install edge-tts</span></pre></div>
     <div class="card"><h3>Vídeo/áudio</h3><p>ffmpeg e ffprobe no PATH para montar o filme.</p><pre><span class="k">ffmpeg -version</span></pre></div>
   </div>
 </div></section>
@@ -183,7 +172,7 @@ AGNES_API_KEY=<span class="s">sua-chave</span></pre></div>
   <div class="step"><div class="b">1</div><div>
     <h3>Clone o projeto</h3>
     <p>O repo traz o pipeline, as duas skills e uma história de exemplo.</p>
-<pre><span class="k">git clone https://github.com/inematds/videos-agnes.git</span>
+<pre><span class="k">git clone https://github.com/emersonccaa/videos-agnes.git</span>
 <span class="k">cd videos-agnes</span></pre>
   </div></div>
 
@@ -224,7 +213,7 @@ AGNES_API_KEY=<span class="s">sua-chave</span></pre></div>
 <section id="dicas"><div class="wrap">
   <span class="chip">Dicas · API Agnes medida na prática</span>
   <h2>O que ninguém te conta (e a doc erra)</h2>
-  <p class="sub">Aprendido em ~70 chamadas reais. A documentação completa está no <a href="https://github.com/inematds/videos-agnes#documentação-da-api-agnes-ai-medida-na-prática" target="_blank" rel="noopener">README</a>.</p>
+  <p class="sub">Aprendido em ~70 chamadas reais. A documentação completa está no <a href="https://github.com/emersonccaa/videos-agnes#documentação-da-api-agnes-ai-medida-na-prática" target="_blank" rel="noopener">README</a>.</p>
   <div class="grid g3">
     <div class="card"><h3>🇬🇧 Prompt em inglês</h3><p>Em português a API bloqueia conteúdo legítimo com HTTP 400. "Usar um galho como alavanca" foi recusado 4× em PT e passou de primeira em EN.</p></div>
     <div class="card"><h3>🔢 No máximo 2 referências</h3><p>Cinco referências destroem a imagem: confete de pixels e o prompt é ignorado. Muitos personagens numa cena? Use uma âncora de grupo (várias pessoas juntas = 1 ref).</p></div>
@@ -248,10 +237,9 @@ AGNES_API_KEY=<span class="s">sua-chave</span></pre></div>
 
 <footer>
   <div class="wrap">
-    <div class="pill">Agnes AI</div><div class="pill">Python</div><div class="pill">inemavox TTS</div><div class="pill">ffmpeg</div>
+    <div class="pill">Agnes AI</div><div class="pill">Python</div><div class="pill">Edge TTS</div><div class="pill">ffmpeg</div>
     <p style="margin-top:18px">videos-agnes · história → filme narrado, custo US$ 0 ·
-      <a href="https://github.com/inematds/videos-agnes">github.com/inematds/videos-agnes</a> ·
-      <a href="https://inema.club">INEMA.CLUB</a></p>
+      <a href="https://github.com/emersonccaa/videos-agnes">github.com/emersonccaa/videos-agnes</a></p>
   </div>
 </footer>
 

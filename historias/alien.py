@@ -4,7 +4,7 @@
 TITULO = 'O Mistério do Alien'
 LEGENDA = ('O Misterio do Alien — uma historia infantil\n'
            '14 cenas · imagens agnes-image-2.1-flash · video keyframes agnes-video-v2.0 · '
-           'narracao bella local. Custo US$ 0.')
+           'narracao via Edge TTS. Custo US$ 0.')
 
 TRIO = ('Lívia, a girl with brown skin, dark brown hair and brown eyes; '
         'Maria, a girl with blonde hair and blue eyes; '

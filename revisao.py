@@ -2,7 +2,7 @@
 
 Regra (definida com o usuário, 2026-07-17): as histórias vêm de crianças. NÃO corrigir
 o português (concordância, estilo) — preservar a voz da criança. Corrigir SÓ o que a
-locução (chatterbox) erra: número/moeda por extenso, abreviações, e pontuação de fala.
+locução (TTS) erra: número/moeda por extenso, abreviações, e pontuação de fala.
 Toda mudança é registrada e mostrada (diff) — nada é editado em silêncio.
 
 Sem dependências externas (num2words não está disponível no ambiente).

@@ -3,7 +3,7 @@
 História → filme animado narrado via **Agnes AI** (custo US$ 0). Você dá o conto e os
 personagens; o pipeline devolve o MP4 narrado.
 
-Guia: https://inematds.github.io/videos-agnes/guia/ · Skills: `videos-agnes` (filme) e `imagens-agnes` (imagem avulsa).
+Guia: `guia/index.html` (publicado via GitHub Pages) · Skills: `videos-agnes` (filme) e `imagens-agnes` (imagem avulsa).
 
 ```bash
 python3 rodar.py exemplo          # gera o filme de exemplo (âncoras→cenas→narração→clipes→montagem→Telegram)
@@ -155,15 +155,15 @@ fornecedor único crítico.
 1. **Âncoras** — model sheet derivado (mãe em text2img, resto por img2img).
 2. **Cenas** — 2 imagens por cena (A abre / B fecha), ≤ 2 refs, `size` em pixels.
 3. **Revisão de dicção** (`revisao.py`) — número/moeda por extenso etc. antes do TTS, preservando o texto original.
-4. **Narração** — inemavox `bella` (chatterbox) local; a fala define a duração de cada clipe.
+4. **Narração** — Edge TTS (online, gratuito); a fala define a duração de cada clipe.
 5. **Clipes** — keyframe A→B, `num_frames` casado com a narração, throttle de 5/min.
 6. **Montagem** — concatena, casa áudio/vídeo sem cortar fala, comprime, envia ao Telegram.
 
 ## Pré-requisitos
 
-- `AGNES_API_KEY` em `~/projetos/agnes-nei/.env` (lida em runtime; nunca versionada)
-- inemavox em `localhost:8010` (narração) · `ffmpeg`/`ffprobe` no PATH
-- openpcbot `.env` com `TELEGRAM_BOT_TOKEN` + `ALLOWED_CHAT_ID` (envio)
+- `AGNES_API_KEY` em `config/agnes.env` (lida em runtime; nunca versionada — caminho configurável via `AGNES_ENV_PATH`)
+- pacote `edge-tts` instalado (narração online, sem daemon) · `ffmpeg`/`ffprobe` no PATH
+- `TELEGRAM_BOT_TOKEN` + `ALLOWED_CHAT_ID` em `config/telegram.env` (envio — caminho configurável via `TELEGRAM_ENV_PATH`)
 
 ## Estrutura
 

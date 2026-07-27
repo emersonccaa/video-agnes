@@ -4,7 +4,7 @@
 TITULO = 'A Menina que Adorava Cavalos — Aurora'
 LEGENDA = ('A Menina que Adorava Cavalos\n'
            '10 cenas · imagens agnes-image-2.1-flash · video keyframes agnes-video-v2.0 · '
-           'narracao bella local. Custo US$ 0.')
+           'narracao via Edge TTS. Custo US$ 0.')
 
 AURORA = ('Aurora, a girl about ten years old with straight red hair and greenish-blue eyes, '
           'wearing dark blue jeans, a plaid shirt, a dark blue denim jacket and light leather boots')

@@ -5,7 +5,7 @@
 TITULO = 'O Menino que Queria um Xbox'
 LEGENDA = ('O Menino que Queria um Xbox — uma historia infantil\n'
            '10 cenas · imagens agnes-image-2.1-flash · video keyframes agnes-video-v2.0 · '
-           'narracao bella local. Custo US$ 0.')
+           'narracao via Edge TTS. Custo US$ 0.')
 
 TITI = ('Titi, a boy about ten years old with yellowish blond hair and green eyes, '
         'wearing a black t-shirt, blue jeans and white sneakers')

@@ -6,7 +6,7 @@
 TITULO = 'A Maldição da Família Diabrotic'
 LEGENDA = ('A Maldicao da Familia Diabrotic\n'
            '12 cenas · imagens agnes-image-2.1-flash · video keyframes agnes-video-v2.0 · '
-           'narracao bella local. Custo US$ 0.')
+           'narracao via Edge TTS. Custo US$ 0.')
 
 IRMAS = ('Amora, a young woman with bright fluorescent purple hair; and Lila, her sister, a young woman with '
          'navy blue hair. Two sisters in rodeo clothing with lassos, boots and hats')
