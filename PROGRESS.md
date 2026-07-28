@@ -8,6 +8,28 @@ Cada entrada: **o que mudou** → **valor que agrega** (por quê importa).
 
 ---
 
+## 2026-07-27 21:00–21:05 — Capa nova sem marca de terceiro
+
+**O que mudou:**
+- A entrada anterior já tinha purgado `capa/capa.png` do histórico por ter a marca
+  "INEMA.CLUB" **composta nos pixels da imagem** (não era texto pesquisável — só foi
+  achada revisando a imagem manualmente, não por grep). O arquivo tinha ficado sem
+  substituto.
+- Gerada capa nova: mesma foto do `guia/assets/hero.png` (já sem marca), composta com
+  título "videos-agnes" e um selo neutro "IA · VÍDEO" — nada de branding de terceiro,
+  só o nome do próprio projeto. Composição feita com PIL local (fundo + foto + texto),
+  não pela API Agnes, pra ter texto nítido garantido.
+- A capa também **não tinha uso** (não aparecia nem no `guia/index.html` nem no
+  `README.md`). Agora está referenciada no topo do `README.md`.
+
+**Valor agregado:** fecha o último resquício visual da marca antiga que tinha escapado
+da limpeza de texto; e o arquivo `capa/capa.png` deixa de ser um PNG órfão no repo —
+agora cumpre o papel de capa/preview do projeto de fato.
+
+**Commit:** `cbab931`.
+
+---
+
 ## 2026-07-27 20:00–21:00 — Migração de dono do repo + publicação
 
 **O que mudou:**
