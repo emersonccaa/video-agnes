@@ -1,5 +1,7 @@
 # videos-agnes
 
+![capa](capa/capa.png)
+
 História → filme animado narrado via **Agnes AI** (custo US$ 0). Você dá o conto e os
 personagens; o pipeline devolve o MP4 narrado.
 
